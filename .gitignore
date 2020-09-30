@@ -3,10 +3,9 @@
 ################################################################################
 
 /.vs
-/Chopper/.vs/Chopper/v16
-/Chopper/bin
-/Chopper/obj/Debug
-/Chopper/.vs
-/Chopper/Content/obj
-/Chopper/Content/bin/DesktopGL/Content
+~/bin
+~/obj/Debug
+~/.vs
+~/Content/obj
+~/Content/bin/DesktopGL/Content
 /OriginalSource
