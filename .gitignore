@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Chopper/.vs/Chopper/v16
+/Chopper/bin
+/Chopper/obj/Debug
+/Chopper/.vs
+/Chopper/Content/obj
+/Chopper/Content/bin/DesktopGL/Content
+/OriginalSource
