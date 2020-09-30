@@ -1,0 +1,13 @@
+﻿body {
+    background-color: coral;
+}
+
+h1{
+    text-align: center;
+}
+
+td {
+    background-color: aliceblue;
+    font-weight: bold;
+    text-align: center;
+}
