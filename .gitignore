@@ -3,9 +3,9 @@
 ################################################################################
 
 /.vs
-~/bin
-~/obj/Debug
-~/.vs
-~/Content/obj
-~/Content/bin/DesktopGL/Content
-/OriginalSource
+/bin
+/obj
+.vs
+
+/Prog3/Prog3
+/WebAppsProg3
