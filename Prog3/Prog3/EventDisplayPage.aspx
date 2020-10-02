@@ -30,9 +30,12 @@
     <asp:Label ID="lblEventName" runat="server" Text="No Event"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <asp:GridView ID="GridView1" runat="server">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+        <Columns>
+        <asp:BoundField DataField="Event_Name" HeaderText="Event" />  
+        <asp:BoundField DataField="Date" HeaderText="Date" /> 
+    </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Date], [Event_Description], [Event_Name] FROM [Table]"></asp:SqlDataSource>
     <asp:Button ID="btnUpdate" runat="server" PostBackUrl="EventUpdatePage.aspx" Text="Update Event" />
 </asp:Content>
 
