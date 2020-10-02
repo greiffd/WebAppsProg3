@@ -9,20 +9,19 @@ namespace Prog3
 {
     public partial class CalendarMaster : System.Web.UI.MasterPage
     {
+        //public DateTime selectedDate { get { return Calendar1.SelectedDate; } }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             //ContentPlaceHolder1.Visible = false;
+
         }
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            lblEventName.Text = Calendar1.SelectedDate.ToShortDateString();
-
+            //lblDate.Text = Calendar1.SelectedDate.ToString();
+            
         }
 
-        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
-        {
-
-        }
     }
 }

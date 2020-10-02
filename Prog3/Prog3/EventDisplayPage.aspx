@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="EventDisplayPage.aspx.cs" Inherits="Prog3.EventDisplayPage" %>
 
-
+<%@ MasterType VirtualPath="MasterPage.Master" %>
 <%--<script runat="server">
     protected void Page_Load(Object s, EventArgs e)
     {
@@ -38,5 +38,11 @@
     </asp:GridView>
     <asp:Button ID="btnUpdate" runat="server" PostBackUrl="EventUpdatePage.aspx" Text="Update Event" />
 </asp:Content>
+
+
+<asp:Content ID="Content4" runat="server" contentplaceholderid="ContentPlaceHolder5">
+    <asp:Calendar ID="Calendar2" runat="server" Width="370px" Height="231px" OnSelectionChanged="Calendar2_SelectionChanged"></asp:Calendar>
+</asp:Content>
+
 
 

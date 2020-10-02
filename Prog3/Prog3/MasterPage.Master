@@ -40,12 +40,13 @@
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:Calendar ID="Calendar1" runat="server" Width="367px" OnSelectionChanged="Calendar1_SelectionChanged" OnDayRender="Calendar1_DayRender"></asp:Calendar>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder5" runat="server">
+                    </asp:ContentPlaceHolder>
                 </td>
             </tr>
             <tr>
                 <td class="auto-style6">
-                    <asp:Label ID="lblEventName" runat="server" Text="Event Name Here" Visible="False"></asp:Label>
+                    <asp:Label ID="lblDate" runat="server" Visible="False"></asp:Label>
                         <br />
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" Runat="server">
                         

@@ -12,18 +12,20 @@ namespace Prog3
 {
     public partial class EventUpdatePage : System.Web.UI.Page
     {
-        private DateTime date = DateTime.Now;
+        private DateTime date;
 
         public Label updateLabel { get { return lblUpdatedName; } }
 
+        Calendar calendar;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            
 
             if (PreviousPage != null && PreviousPage.IsCrossPagePostBack/*!IsPostBack*/)
             {
-                //Label displayPageLabel = (Label)PreviousPage.FindControl("labelEventName");
-                lblUpdatedName.Text = PreviousPage.labelEventName.Text;
+                calendar = PreviousPage.eventCalendar;
+                date = calendar.SelectedDate;
+                //lblUpdatedName.Text = PreviousPage.labelEventName.Text;
             }
             else
             {
@@ -33,8 +35,7 @@ namespace Prog3
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            //Calendar calendar = (Calendar)Master.FindControl("Calendar1");
-            //date = PreviousPage.date;
+            //date = calendar.SelectedDate;
 
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(cs);
