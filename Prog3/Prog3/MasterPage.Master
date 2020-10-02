@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Event Calendar - David Greiff</title>
+    <title>Event Calendar - Program 3</title>
     <link href="Stylesheet1.css"
         type="text/css"
         rel="stylesheet">
@@ -52,7 +52,6 @@
                         ContentPlaceHolder1
                     </asp:ContentPlaceHolder>
                     <br />
-                    <asp:Button ID="btnPostBack" runat="server" PostBackUrl="~/EventDisplayPage.aspx" Text="Button" Visible="False" />
                     <br />
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" Runat="server">
                         ContentPlaceHolder2

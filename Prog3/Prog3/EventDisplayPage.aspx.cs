@@ -17,6 +17,8 @@ namespace Prog3
 
         public List<Event> events = new List<Event>();
 
+        public DateTime date { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,7 +34,11 @@ namespace Prog3
             {
                 Calendar calendar = (Calendar)Master.FindControl("Calendar1");
                 lblEventName.Text = calendar.SelectedDate.ToShortDateString();
+                date = calendar.SelectedDate;
             }
+
+            //Calendar calendar = (Calendar)Master.FindControl("Calendar1");
+            //date = calendar.SelectedDate;
 
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             DataTable dt = new DataTable();
