@@ -30,13 +30,14 @@
     <asp:Label ID="lblEventName" runat="server" Text="No Event"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
         <Columns>
         <asp:BoundField DataField="Event_Name" HeaderText="Event" />  
         <asp:BoundField DataField="Date" HeaderText="Date" /> 
     </Columns>
     </asp:GridView>
-    <asp:Button ID="btnUpdate" runat="server" PostBackUrl="EventUpdatePage.aspx" Text="Update Event" />
+    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <asp:Button ID="btnUpdate" runat="server" PostBackUrl="EventUpdatePage.aspx" Text="Update Event" OnClick="btnUpdate_Click" />
 </asp:Content>
 
 

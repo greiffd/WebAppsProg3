@@ -10,9 +10,12 @@ using System.Web.UI.WebControls;
 
 namespace Prog3
 {
+
+    
     public partial class EventUpdatePage : System.Web.UI.Page
     {
-        private DateTime date;
+        public DateTime date;
+        public String update;
 
         public Label updateLabel { get { return lblUpdatedName; } }
 
@@ -23,8 +26,10 @@ namespace Prog3
 
             if (PreviousPage != null && PreviousPage.IsCrossPagePostBack/*!IsPostBack*/)
             {
+                
                 calendar = PreviousPage.eventCalendar;
-                date = calendar.SelectedDate;
+                //date = calendar.SelectedDate;
+                update = Request.QueryString["date"];
                 //lblUpdatedName.Text = PreviousPage.labelEventName.Text;
             }
             else
@@ -35,6 +40,7 @@ namespace Prog3
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+
             //date = calendar.SelectedDate;
 
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;

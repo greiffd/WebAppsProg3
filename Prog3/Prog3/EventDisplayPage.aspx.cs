@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Text;
 
+
 namespace Prog3
 {
     public partial class EventDisplayPage : System.Web.UI.Page
@@ -87,9 +88,9 @@ namespace Prog3
             }
             else
                 GridView1.Visible = false;
-            
+
         }
-        
+
         private List<int> GetValidEvents(DateTime inDate)
         {
             List<int> ids = new List<int>();
@@ -120,5 +121,21 @@ namespace Prog3
 
         }
 
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            
+            Label1.Text = Calendar2.SelectedDate.ToShortDateString();
+            date = Convert.ToDateTime(Label1.Text);
+            Response.Redirect("EventUpdatePage.aspx.cs?date =" + Label1.Text);
+        }
+
+            
+    
+           
     }
 }
