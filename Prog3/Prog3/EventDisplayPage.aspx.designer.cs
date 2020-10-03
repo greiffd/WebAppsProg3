@@ -15,13 +15,13 @@ namespace Prog3
     {
 
         /// <summary>
-        /// lblEventName control.
+        /// lblDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEventName;
+        protected global::System.Web.UI.WebControls.Label lblDate;
 
         /// <summary>
         /// GridView1 control.
@@ -49,19 +49,5 @@ namespace Prog3
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Calendar Calendar2;
-
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new Prog3.CalendarMaster Master
-        {
-            get
-            {
-                return ((Prog3.CalendarMaster)(base.Master));
-            }
-        }
     }
 }

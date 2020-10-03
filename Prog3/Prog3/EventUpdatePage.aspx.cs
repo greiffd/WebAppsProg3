@@ -12,31 +12,25 @@ namespace Prog3
 {
     public partial class EventUpdatePage : System.Web.UI.Page
     {
-        private DateTime date;
-
-        public Label updateLabel { get { return lblUpdatedName; } }
-
-        Calendar calendar;
+        private DateTime date = DateTime.Now;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (PreviousPage != null && PreviousPage.IsCrossPagePostBack/*!IsPostBack*/)
-            {
-                calendar = PreviousPage.eventCalendar;
-                date = calendar.SelectedDate;
-                //lblUpdatedName.Text = PreviousPage.labelEventName.Text;
-            }
-            else
-            {
-                lblUpdatedName.Text = "Not postback";
-            }
+            //EventDisplayPage eventDisplayPage = (EventDisplayPage)this.Page.PreviousPage;
+            //if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
+            //{
+            //    calendar = PreviousPage.eventCalendar;
+            //    date = calendar.SelectedDate;
+            //    lblUpdatedName.Text = date.ToString();
+            //}
+            //else
+            //{
+            //    lblUpdatedName.Text = "Not postback";
+            //}
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            //date = calendar.SelectedDate;
-
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(cs);
 
@@ -46,6 +40,8 @@ namespace Prog3
             cmd.Parameters.AddWithValue("@Date", date);
             con.Open();
             int i = cmd.ExecuteNonQuery();
+
+            Response.Redirect("EventDisplayPage.aspx");
         }
     }
 }

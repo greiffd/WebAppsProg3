@@ -78,7 +78,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Event.cs" />
     <Compile Include="EventDisplayPage.aspx.cs">
       <DependentUpon>EventDisplayPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

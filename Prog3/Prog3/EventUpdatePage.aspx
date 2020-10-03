@@ -2,21 +2,6 @@
 
 <%@ PreviousPageType VirtualPath="~/EventDisplayPage.aspx" %>
 
-<%--<script runat="server">
-    protected void Page_Load(Object s, EventArgs e)
-    {
-        if (PreviousPage != null && PreviousPage.IsCrossPagePostBack/*!IsPostBack*/)
-        {
-            lblEventName = (Label)Page.PreviousPage.FindControl("lblEventName");
-        }
-        else
-        {
-            lblEventName.Text = "Not postback";
-        }
-
-    }
-</script>--%>
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -38,7 +23,7 @@
 </asp:Content>
 <asp:Content ID="Content5" runat="server" contentplaceholderid="ContentPlaceHolder4">
     <p>
-<asp:Button ID="btnUpdate" runat="server" Text="Update Event" OnClick="btnUpdate_Click" PostBackUrl="EventDisplayPage.aspx" />
+<asp:Button ID="btnUpdate" runat="server" Text="Update Event" OnClick="btnUpdate_Click" />
 </p>
 </asp:Content>
 

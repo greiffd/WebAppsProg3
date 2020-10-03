@@ -14,18 +14,15 @@ namespace Prog3
     public partial class EventDisplayPage : System.Web.UI.Page
     {
 
-        public Label labelEventName { get { return lblEventName; } }
+        public DateTime date { get; set; }      // The current date
 
-        public List<Event> events = new List<Event>();
-
-        public DateTime date { get; set; }
-
-        public Calendar eventCalendar { get { return Calendar2; } }
-
+        /*
+         * Gets the selected date and stores it.
+         */
         protected void Calendar2_SelectionChanged(object sender, EventArgs e)
         {
             date = Calendar2.SelectedDate;
-            lblEventName.Text = date.ToString();
+            lblDate.Text = date.ToShortDateString();
 
             UpdateGridview();
         }
@@ -33,19 +30,12 @@ namespace Prog3
         protected void Page_Load(object sender, EventArgs e)
         {
             UpdateGridview();
-            if (PreviousPage != null && PreviousPage.IsCrossPagePostBack/*!IsPostBack*/)
-            {
-
-            }
-            else
-            {
-                //lblEventName.Text = "Not Crosspage postback";
-                //calendar = (Calendar)Master.FindControl("Calendar1");
-            }
-
 
         }
 
+        /*
+         * Fills the Gridview with the events in the database.
+         */
         private void UpdateGridview()
         {
             List<int> eventIds = GetValidEvents(date);
@@ -73,7 +63,7 @@ namespace Prog3
                 DataTable dt = new DataTable();
                 SqlConnection con = new SqlConnection(cs);
 
-                string command = "select Event_Name, Date from eventsTable where id =" + idString;
+                string command = "select Event_Name" + /*, Date */ " from eventsTable where id =" + idString;
                 SqlDataAdapter adapt = new SqlDataAdapter(command, con);
                 con.Open();
                 adapt.Fill(dt);
@@ -90,6 +80,11 @@ namespace Prog3
             
         }
         
+        /*
+         * Queries the database for the events that fall under the same date as inDate.
+         * @param indate: the date to query
+         * @return a list of database IDs that correspond to the valid events
+         */
         private List<int> GetValidEvents(DateTime inDate)
         {
             List<int> ids = new List<int>();
@@ -113,11 +108,6 @@ namespace Prog3
             }
 
             return ids;
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
         }
 
     }
