@@ -12,21 +12,20 @@ namespace Prog3
 {
     public partial class EventUpdatePage : System.Web.UI.Page
     {
-        private DateTime date = DateTime.Now;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             //EventDisplayPage eventDisplayPage = (EventDisplayPage)this.Page.PreviousPage;
-            //if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
-            //{
-            //    calendar = PreviousPage.eventCalendar;
-            //    date = calendar.SelectedDate;
-            //    lblUpdatedName.Text = date.ToString();
-            //}
-            //else
-            //{
-            //    lblUpdatedName.Text = "Not postback";
-            //}
+            if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
+            {
+                Calendar calendar = (Calendar) PreviousPage.Master.FindControl("ContentPlaceHolder5").FindControl("Calendar2");
+                Calendar1.SelectedDate = calendar.SelectedDate;
+                lblDateSelected.Text = Calendar1.SelectedDate.ToShortDateString();
+            }
+            else
+            {
+                // Does not do any load functions
+            }
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -34,10 +33,11 @@ namespace Prog3
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(cs);
 
+
             SqlCommand cmd = new SqlCommand("Insert INTO eventsTable(Event_Name, Date) VALUES (@Event_Name, @Date)", con);
             cmd.CommandType = CommandType.Text;
             cmd.Parameters.AddWithValue("@Event_Name", txtEventName.Text);
-            cmd.Parameters.AddWithValue("@Date", date);
+            cmd.Parameters.AddWithValue("@Date", Calendar1.SelectedDate);
             con.Open();
             int i = cmd.ExecuteNonQuery();
 

@@ -6,11 +6,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="lblUpdatedName" runat="server" Text="No Event" Enabled="False"></asp:Label>
+    <asp:Label ID="lblDateSelected" runat="server" Text="No Event" Enabled="False"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <br />
 <br />
+    <asp:Calendar ID="Calendar1" runat="server" Visible="False"></asp:Calendar>
 </asp:Content>
 <asp:Content ID="Content4" runat="server" contentplaceholderid="ContentPlaceHolder3">
     <p>

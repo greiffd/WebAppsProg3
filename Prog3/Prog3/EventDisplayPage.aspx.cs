@@ -29,6 +29,7 @@ namespace Prog3
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            date = Calendar2.SelectedDate;
             UpdateGridview();
 
         }
