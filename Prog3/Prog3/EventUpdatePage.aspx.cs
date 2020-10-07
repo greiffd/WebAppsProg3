@@ -15,24 +15,30 @@ namespace Prog3
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //EventDisplayPage eventDisplayPage = (EventDisplayPage)this.Page.PreviousPage;
+
+            /*
+            * If it is a postback the previously selected date
+            * calenders selected date and text is shown
+            */
+
             if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
             {
-                Calendar calendar = (Calendar) PreviousPage.Master.FindControl("ContentPlaceHolder5").FindControl("Calendar2");
+               
                 Calendar1.SelectedDate = calendar.SelectedDate;
                 lblDateSelected.Text = Calendar1.SelectedDate.ToShortDateString();
             }
-            else
-            {
-                // Does not do any load functions
-            }
         }
 
+
+
+            /*
+            * Creates a connection with the database. That 
+            * connection is then used to insert the event.
+            */
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(cs);
-
 
             SqlCommand cmd = new SqlCommand("Insert INTO eventsTable(Event_Name, Date) VALUES (@Event_Name, @Date)", con);
             cmd.CommandType = CommandType.Text;

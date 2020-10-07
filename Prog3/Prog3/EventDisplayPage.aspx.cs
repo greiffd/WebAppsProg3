@@ -27,12 +27,17 @@ namespace Prog3
             UpdateGridview();
         }
 
+
+        /*
+        * Sets the date to default
+        */
         protected void Page_Load(object sender, EventArgs e)
         {
             date = Calendar2.SelectedDate;
             UpdateGridview();
 
         }
+
 
         /*
          * Fills the Gridview with the events in the database.
@@ -59,7 +64,9 @@ namespace Prog3
                     count++;
                 }
 
-
+                /*
+                * Connects to database and inserts data into gridview
+                */
                 string cs = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
                 DataTable dt = new DataTable();
                 SqlConnection con = new SqlConnection(cs);
