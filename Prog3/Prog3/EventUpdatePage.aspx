@@ -24,7 +24,15 @@
 </asp:Content>
 <asp:Content ID="Content5" runat="server" contentplaceholderid="ContentPlaceHolder4">
     <p>
-<asp:Button ID="btnUpdate" runat="server" Text="Update Event" OnClick="btnUpdate_Click" />
+<asp:Button ID="btnCreate" runat="server" Text="Create Event" OnClick="btnCreate_Click" />
+        <asp:Button ID="btnUpdate" runat="server" Enabled="False" OnClick="btnUpdate_Click" Text="Update" />
+        <asp:Button ID="btnDelete" runat="server" Enabled="False" OnClick="btnDelete_Click" Text="Delete" />
 </p>
 </asp:Content>
+
+<asp:Content ID="Content6" runat="server" contentplaceholderid="ContentPlaceHolder5">
+    <asp:GridView ID="GridView1" runat="server" Height="176px" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" Width="278px" AutoGenerateSelectButton="True">
+    </asp:GridView>
+</asp:Content>
+
 

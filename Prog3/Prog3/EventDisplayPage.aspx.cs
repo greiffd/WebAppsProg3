@@ -101,7 +101,7 @@ namespace Prog3
 
             SqlConnection con = new SqlConnection(cs);
 
-            SqlCommand cmd = new SqlCommand("select ID, Date from eventsTable", con);
+            SqlCommand cmd = new SqlCommand("select ID, Date from eventsTable where Deleted = 0", con);
 
             con.Open();
 
@@ -115,8 +115,21 @@ namespace Prog3
 
             }
 
+            con.Close();
+
             return ids;
         }
 
+        protected void Calendar2_DayRender1(object sender, DayRenderEventArgs e)
+        {
+            /// Query Database or XML for date e. If event(s) exist, then set e.Cell.CssClass = "cssFileName".
+            /// 
+            List<int> events = GetValidEvents(e.Day.Date);
+
+            if (events.Count > 0)
+            {
+                e.Cell.CssClass = "CustomCellCss";
+            }
+        }
     }
 }

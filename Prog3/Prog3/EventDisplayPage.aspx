@@ -2,6 +2,12 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style type="text/css">
+        .CustomCellCss
+        {
+            background-color: orange;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Label ID="lblDate" runat="server"></asp:Label>
@@ -18,7 +24,10 @@
 
 
 <asp:Content ID="Content4" runat="server" contentplaceholderid="ContentPlaceHolder5">
-    <asp:Calendar ID="Calendar2" runat="server" Width="370px" Height="231px" OnSelectionChanged="Calendar2_SelectionChanged"></asp:Calendar>
+    <asp:Calendar ID="Calendar2" runat="server" Width="370px" Height="231px" OnSelectionChanged="Calendar2_SelectionChanged" OnDayRender="Calendar2_DayRender1">
+        
+            
+        </asp:Calendar>
 </asp:Content>
 
 
