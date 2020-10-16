@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Prog3
 {
@@ -77,6 +79,11 @@ namespace Prog3
             else
                 GridView1.Visible = false;
 
+            /*
+             * Gets events from XML file Events.xml
+             * Comment out this line to show events from database
+             */
+            GetXMLGridView(Calendar1.SelectedDate);
         }
 
         /*
@@ -111,6 +118,25 @@ namespace Prog3
             return ids;
         }
 
+        /**
+         * Populates the gridview with events from Events.xml
+         */
+        private void GetXMLGridView(DateTime inDate)
+        {
+            var query = from m in
+                            XElement.Load(MapPath("Events.xml")).Elements("Event")
+                        where (DateTime)m.Element("date") == inDate
+                        select new Event
+                        {
+                            Id = (int)m.Element("id"),
+                            EventName = (string)m.Element("name"),
+                            //Description = (string)m.Element("description"),
+                            Date = (DateTime)m.Element("date"),
+                        };
+            this.GridView1.DataSource = query;
+            this.GridView1.DataBind();
+        }
+
         /*
         * Creates a connection with the database. That 
         * connection is then used to insert the event.
@@ -127,8 +153,44 @@ namespace Prog3
             con.Open();
             int i = cmd.ExecuteNonQuery();
 
+            // Adds the event to Events.xml file
+            CreateXMLEvent();
+
             Response.Redirect("EventDisplayPage.aspx");
         }
+
+        private void CreateXMLEvent()
+        {
+            XmlDocument eventsDoc = new XmlDocument();
+
+            eventsDoc.Load(Server.MapPath("~/Events.xml"));
+
+            XmlElement parentElement = eventsDoc.CreateElement("Event");
+
+            XmlElement id = eventsDoc.CreateElement("id");
+            id.InnerText = GetNextId().ToString();          // Calls method to retrieve the next Id
+
+            XmlElement name = eventsDoc.CreateElement("name");
+            name.InnerText = txtEventName.Text;
+
+            // Unimplemented description
+
+            //XmlElement description = eventsDoc.CreateElement("description");
+            //description.InnerText = txtDescription.Text;
+
+            XmlElement date = eventsDoc.CreateElement("date");
+            date.InnerText = Calendar1.SelectedDate.ToString();
+
+            parentElement.AppendChild(id);
+            parentElement.AppendChild(name);
+            //parentElement.AppendChild(description);
+            parentElement.AppendChild(date);
+
+            eventsDoc.DocumentElement.AppendChild(parentElement);
+
+            eventsDoc.Save(Server.MapPath("~/Events.xml"));
+        }
+
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -152,9 +214,25 @@ namespace Prog3
                 con.Open();
                 int i = cmd.ExecuteNonQuery();
 
+                // Updates the event to Events.xml file
+                UpdateXMLEvent();
+
                 Response.Redirect("EventDisplayPage.aspx");
             }
             
+        }
+
+        private void UpdateXMLEvent()
+        {
+            XDocument eventsDoc = XDocument.Load(Server.MapPath("~/Events.xml"));
+
+            foreach (var item in (from item in eventsDoc.Descendants("Event")
+                                  where int.Parse(item.Element("id").Value) == int.Parse(GridView1.SelectedRow.Cells[1].Text)
+                                  select item).ToList())
+            {
+                item.Element("name").Value = txtEventName.Text;
+            }
+            eventsDoc.Save(Server.MapPath("~/Events.xml"));
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -178,8 +256,42 @@ namespace Prog3
                 con.Open();
                 int i = cmd.ExecuteNonQuery();
 
+                // Delete event from Events.xml
+                DeleteXMLEvent();
+
                 Response.Redirect("EventDisplayPage.aspx");
             }
+        }
+
+        private void DeleteXMLEvent()
+        {
+            XDocument eventsDoc = XDocument.Load(Server.MapPath("~/Events.xml"));
+
+            var query = eventsDoc.Descendants("Event")
+                        .Where(e => e.Element("id").Value.Equals(GridView1.SelectedRow.Cells[1].Text)).ToList();
+            query.Remove();
+
+            eventsDoc.Save(Server.MapPath("~/Events.xml"));
+        }
+
+        private int GetNextId()
+        {
+            int id = 0;
+
+            var xDoc = XDocument.Load(Server.MapPath("~/Events.xml"));
+
+            var events = xDoc.Descendants("Event")
+               .ToList();
+
+            // Sorts all events by id in descending order
+            if (events.Any())
+            {
+                id = events.Select(x => Int32.Parse(x.Element("id").Value))
+                    .OrderByDescending(x => x)
+                    .First();
+            }
+
+            return ++id;
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

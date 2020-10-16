@@ -135,8 +135,9 @@ namespace Prog3
                             where (DateTime)m.Element("date") == inDate
                         select new Event
                         {
+                            Id = (int)m.Element("id"),
                             EventName = (string)m.Element("name"),
-                            Description = (string)m.Element("description"),
+                            //Description = (string)m.Element("description"),
                             Date = (DateTime)m.Element("date"),
                         };
             this.GridView1.DataSource = query;
