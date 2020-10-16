@@ -6,6 +6,7 @@
         .CustomCellCss
         {
             background-color: orange;
+            color: white;
         }
     </style>
 </asp:Content>
@@ -13,18 +14,18 @@
     <asp:Label ID="lblDate" runat="server"></asp:Label>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="366px">
-        <Columns>
-        <asp:BoundField DataField="Event_Name" HeaderText="Event" />  
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True" Width="420px">
+        <%--<Columns>--%>
+        <%--<asp:BoundField DataField="Event_Name" HeaderText="Event" />--%>  
         <%--<asp:BoundField DataField="Date" HeaderText="Date" />--%> 
-    </Columns>
+    <%--</Columns>--%>
     </asp:GridView>
     <asp:Button ID="btnUpdate" runat="server" PostBackUrl="~/EventUpdatePage.aspx" Text="Update Event" />
 </asp:Content>
 
 
 <asp:Content ID="Content4" runat="server" contentplaceholderid="ContentPlaceHolder5">
-    <asp:Calendar ID="Calendar2" runat="server" Width="370px" Height="231px" OnSelectionChanged="Calendar2_SelectionChanged" OnDayRender="Calendar2_DayRender1">
+    <asp:Calendar ID="Calendar2" runat="server" Width="420px" Height="250px" OnSelectionChanged="Calendar2_SelectionChanged" OnDayRender="Calendar2_DayRender1">
         
             
         </asp:Calendar>

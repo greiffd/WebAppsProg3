@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Prog3
 {
@@ -35,7 +36,6 @@ namespace Prog3
         {
             date = Calendar2.SelectedDate;
             UpdateGridview();
-
         }
 
 
@@ -85,7 +85,12 @@ namespace Prog3
             }
             else
                 GridView1.Visible = false;
-            
+
+            /*
+             * Gets events from XML file Events.xml
+             * Comment out this line to show events from database
+             */
+            GetXMLGridView(date);
         }
         
         /*
@@ -120,14 +125,40 @@ namespace Prog3
             return ids;
         }
 
+        /**
+         * Populates the gridview with events from Events.xml
+         */
+        private void GetXMLGridView(DateTime inDate)
+        {
+            var query = from m in
+                            XElement.Load(MapPath("Events.xml")).Elements("Event")
+                            where (DateTime)m.Element("date") == inDate
+                        select new Event
+                        {
+                            EventName = (string)m.Element("name"),
+                            Description = (string)m.Element("description"),
+                            Date = (DateTime)m.Element("date"),
+                        };
+            this.GridView1.DataSource = query;
+            this.GridView1.DataBind();
+        }
+
         protected void Calendar2_DayRender1(object sender, DayRenderEventArgs e)
         {
             /// Query Database or XML for date e. If event(s) exist, then set e.Cell.CssClass = "cssFileName".
             /// 
             List<int> events = GetValidEvents(e.Day.Date);
+            int numEvents = events.Count;
 
-            if (events.Count > 0)
+            if (numEvents > 0)
             {
+                string eventStr;
+                if (numEvents > 1)
+                    eventStr = numEvents + " events";
+                else
+                    eventStr = "1 event";
+
+                e.Cell.Controls.Add(new LiteralControl("<p>" + eventStr + "</p>"));
                 e.Cell.CssClass = "CustomCellCss";
             }
         }

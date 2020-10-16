@@ -72,12 +72,14 @@
       <DependentUpon>Events.mdf</DependentUpon>
     </Content>
     <Content Include="EventDisplayPage.aspx" />
+    <Content Include="Events.xml" />
     <Content Include="EventUpdatePage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Event.cs" />
     <Compile Include="EventDisplayPage.aspx.cs">
       <DependentUpon>EventDisplayPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
