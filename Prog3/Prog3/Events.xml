@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Events>
+  <Event>
+    <id>3</id>
+    <name>New Event 2</name>
+    <date>10/1/2020</date>
+  </Event>
+  <Event>
+    <id>19</id>
+    <name>Hello World</name>
+    <date>10/12/2020</date>
+  </Event>
+  <Event>
+    <id>20</id>
+    <name>Hello World</name>
+    <date>10/12/2020</date>
+  </Event>
+</Events>

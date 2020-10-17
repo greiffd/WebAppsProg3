@@ -7,6 +7,5 @@
 /obj
 .vs
 
-/Prog3/Prog3
-/WebAppsProg3
-/Prog3.zip
+/Prog3/Prog3/bin
+/Prog3/Prog3/obj/Debug
